@@ -894,17 +894,7 @@ var RegistryScopeTree = React.createClass({
             event.stopPropagation();
         });
         
-        /* THINGS TO DO
-        $(document).bind("dnd_start.vakata", function(e, data) {
-            console.log("Start dnd");
-        })
-        .bind("dnd_move.vakata", function(e, data) {
-            console.log("Move dnd");
-        })
-        .bind("dnd_stop.vakata", function(e, data) {
-           // alert(JSON.stringify(data))
-        });
-        */
+        
        
     },
     
@@ -1123,7 +1113,7 @@ var RegistryScope = React.createClass({
     ShowAll:function(e){
        // e.preventDefault();
         
-        searchurl = this.props.url + "/registryEntry?scope=" + encodeURIComponent(this.props.scope) + "&confidential=" + this.props.filterData.confidential + "&name=" + encodeURIComponent(this.props.filterData.name) + "&value=" + encodeURIComponent(this.props.filterData.value) + "&useInheritance=" + this.props.filterData.inheritance + "&matchCase=" + this.props.filterData.sensitive + "&offset=" + this.props.filterData.offset + "&count=" + this.props.filterData.count;
+        searchurl = this.props.url + "/registryEntry?scope=" + encodeURIComponent(this.props.scope) + "&confidential=" + this.props.filterData.confidential + "&name=" + encodeURIComponent(this.props.filterData.name) + "&value=" + encodeURIComponent(this.props.filterData.value) + "&useInheritance=" + this.props.filterData.inheritance + "&matchCase=" + this.props.filterData.sensitive + "&offset=0" + "&count=" + this.props.filterData.count;
       
        
         $.ajax({
@@ -1131,14 +1121,8 @@ var RegistryScope = React.createClass({
          dataType: 'json',
          cache: false,
          success: function(data) {
-        alert(this.state.data.length)
-        alert(data.totalCount)
          if(this.state.data.length < data.totalCount)
-                 {
              this.props.updateScope(this.props.scope);
-                 }
-            
-             
          }.bind(this),
          error: function(xhr, status, err) {
              alert(err)
